@@ -1,0 +1,18 @@
+vse: &vse
+  docker:
+    - image: circleci/node:8.11.3
+
+version: 2.1
+jobs:
+  build:
+    <<: *vse
+    steps:
+      -  checkout
+      -  run: npm install
+      -  run: npm run test
+      -  run: npm build
+workflows:
+  version: 2.1
+  build:
+    jobs:
+      - build
